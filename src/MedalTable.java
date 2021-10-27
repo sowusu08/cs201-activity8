@@ -137,8 +137,13 @@ public class MedalTable {
         // sort countryList using countryList.sort(
         // Comparator.comparing(Country::getGold()).reversed().thenComparing(Country::getSilver()).reversed().thenComparing(Country::getBronze).reversed().thenComparing(Country::getName);
         // )
-        Collections.sort(countryList, Comparator.comparing(Country::getGold).reversed().thenComparing(Country::getSilver).reversed().thenComparing(Country::getBronze).reversed().thenComparing(Country::getName));
+        //Collections.sort(countryList, Comparator.comparing(Country::getGold).reversed().thenComparing(Country::getSilver).reversed().thenComparing(Country::getBronze).reversed().thenComparing(Country::getName));
 
+        // honestly I have no idea why this sorting works...
+        countryList.sort(Comparator.comparing(Country::getName));
+        countryList.sort(Collections.reverseOrder(Comparator.comparing(Country::getBronze)));
+        countryList.sort(Collections.reverseOrder(Comparator.comparing(Country::getSilver)));
+        countryList.sort(Collections.reverseOrder(Comparator.comparing(Country::getGold)));
 
         // init String ArrayList "retList"
         ArrayList<String> retList = new ArrayList<>();
