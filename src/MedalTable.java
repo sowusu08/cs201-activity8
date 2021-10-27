@@ -109,14 +109,15 @@ public class MedalTable {
             String[] split = r.split(" ");
             // loop through elements in "split" (using index "k" for loop)
             for(int k=0; k< split.length; k++) {
+                String currentCountry = split[k];
                 // put if absent the element as a key in "tally" map with a value equal to empty arrayList
-                tally.putIfAbsent(split[k], new ArrayList<Integer>(Collections.nCopies(3, 0)));     // looked up Collections.nCopies
+                tally.putIfAbsent(currentCountry, new ArrayList<Integer>(Collections.nCopies(3, 0)));     // looked up Collections.nCopies
                 // set "temp" to value at the key in "tally" (ArrayList)
-                ArrayList<Integer> temp = tally.get(split[k]);
+                ArrayList<Integer> temp = tally.get(currentCountry);
                 // temp.add(k, temp.get(k) + 1) to update count
-                temp.add(k, temp.get(k) + 1);
+                temp.set(k, temp.get(k) + 1);
                 // "tally".put(element, temp) to put updated arrayList at element in "tally" map
-                tally.put(split[k], temp);
+                tally.put(currentCountry, temp);
             }
         }
         // initialize empty ArrayList "countryList"
